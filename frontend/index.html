@@ -2,23 +2,23 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Rubik's Cube Solver</title>
-  <link rel="stylesheet" href="style.css" />
+  <style>
+    #cube-container { width: 600px; height: 600px; margin: auto; }
+    input, button { margin: 10px; padding: 5px; }
+  </style>
 </head>
 <body>
   <h1>Rubik's Cube Solver</h1>
 
-  <div class="controls">
-    <input id="state" type="text" placeholder="Enter cube state string or scramble (e.g. R U R' U R U2 R')" />
-    <button onclick="solveCube()">Solve Cube</button>
-  </div>
+  <input id="state" placeholder="Enter cube state (e.g. scramble)" />
+  <button onclick="solveCube()">Solve</button>
 
-  <p id="solution" style="margin: 10px; font-weight: bold;"></p>
+  <div id="solution">Solution: </div>
   <div id="cube-container"></div>
 
-  <script src="three.min.js"></script>
-  <script src="OrbitControls.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/build/three.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.155.0/examples/js/controls/OrbitControls.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
