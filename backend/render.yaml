@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: rubik-backend
+    runtime: python
+    repo: https://github.com/PRAVEENKUMAR-V0811/AeroHack-2025/tree/main/backend
+    branch: main
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    plan: free
