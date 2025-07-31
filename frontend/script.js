@@ -1,12 +1,24 @@
-async function solve() {
-  const state = document.getElementById("state").value;
-  const res = await fetch("http://127.0.0.1:5000/solve", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ state })
-  });
-  const data = await res.json();
-  document.getElementById("solution").textContent = "Solution: " + data.solution;
+async function solveCube() {
+  const state = document.getElementById("state").value.trim();
+  if (!state) {
+    alert("Please enter a cube state or scramble.");
+    return;
+  }
+
+  try {
+    const res = await fetch("https://aerohack-2025.onrender.com/solve", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ state })
+    });
+
+    if (!res.ok) throw new Error("Server error");
+
+    const data = await res.json();
+    document.getElementById("solution").textContent = "Solution: " + data.solution;
+  } catch (err) {
+    document.getElementById("solution").textContent = "Error solving cube: " + err.message;
+  }
 }
 
 // Simple static 3D cube display using Three.js
