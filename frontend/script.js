@@ -1,7 +1,8 @@
 async function solveCube() {
-  const state = document.getElementById("state").value.trim();
-  if (!state) {
-    alert("Please enter a cube state or scramble.");
+  const state = document.getElementById("state").value.trim().toUpperCase();
+  
+  if (!state || state.length !== 54) {
+    alert("Please enter a valid 54-character cube state.");
     return;
   }
 
@@ -12,7 +13,10 @@ async function solveCube() {
       body: JSON.stringify({ state })
     });
 
-    if (!res.ok) throw new Error("Server error");
+    if (!res.ok) {
+      const errText = await res.text();
+      throw new Error("Server error: " + errText);
+    }
 
     const data = await res.json();
     document.getElementById("solution").textContent = "Solution: " + data.solution;
@@ -20,6 +24,7 @@ async function solveCube() {
     document.getElementById("solution").textContent = "Error solving cube: " + err.message;
   }
 }
+
 
 // THREE.js 3D Cube
 const scene = new THREE.Scene();
