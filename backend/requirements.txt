@@ -1,3 +1,4 @@
 Flask
-kociemba
 flask-cors
+kociemba
+waitress
